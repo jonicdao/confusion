@@ -18,6 +18,7 @@ import { Link } from 'react-router-dom';
 
     function RenderComments ({dish}) {
         if (dish != null) {
+            // why isn't the other way working? like {comments.map...}
             const comments = dish.comments.map((comment) => {
                 return (
                     <div className="col-12 col-md-5 m-1">
