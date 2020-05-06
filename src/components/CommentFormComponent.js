@@ -36,8 +36,7 @@ class CommentForm extends Component {
     }
 
     handleSubmit(values) {
-        console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.rating, values.firstname, values.message);
         this.toggleModal()
     }
 
@@ -53,11 +52,11 @@ class CommentForm extends Component {
                     <ModalBody>
                         <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
                             <Row>
-                                <Col><Label htmlFor="firstname"><b>Rating</b></Label></Col>
+                                <Col><Label htmlFor="rating"><b>Rating</b></Label></Col>
                             </Row>
                             <Row className="form-group">
                                 <Col>
-                                    <Control.select model=".rating" id="rating" value={this.state.rating} onChange={this.handleChange}>
+                                    <Control.select model=".rating" id="rating" name="rating" value={this.state.rating} onChange={this.handleChange}>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -72,11 +71,11 @@ class CommentForm extends Component {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col><Label htmlFor="author"><b>Your Name</b></Label></Col>
+                                <Col><Label htmlFor="firstname"><b>Your Name</b></Label></Col>
                             </Row>
                             <Row className="form-group">
                                 <Col>
-                                    <Control.text model=".author" id="author" name="author"
+                                    <Control.text model=".firstname" id="firstname" name="firstname"
                                         placeholder="Your Name"
                                         className="form-control"
                                         validators={{
@@ -85,7 +84,7 @@ class CommentForm extends Component {
                                     />
                                     <Errors
                                         className="text-danger"
-                                        model=".author"
+                                        model=".firstname"
                                         show="touched"
                                         messages={{
                                             required: 'Required',
